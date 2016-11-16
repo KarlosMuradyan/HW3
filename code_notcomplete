@@ -57,32 +57,60 @@ class Tree{
         inorder_traversehelper(head);
     }
     
-    void p(){
-        cout<<head->right;
-    }
-    
     bool searchhelper(Node<T>* parent, T val){
         if(parent!=NULL){
             if(parent->value > val){
-                if(searchhelper(parent->left, val)){return true;};
+                if(searchhelper(parent->left, val)){return true; cout<<"True left";};
             }
             else if(parent->value < val){
-                if(searchhelper(parent->right, val)){return true;};
+                if(searchhelper(parent->right, val)){return true; cout<<"True right";};
             }
-            else{
+            else if(parent->value = val){
                 return true;
             }
+            else{
+                return false;
+            };
         }
         else{
             return false;
         }
     }
     
+    
     bool search(T val){
         if(searchhelper(head, val)){
             return true;
         }
         return false;
+    }
+    
+    
+    bool removehelper(Node<T>*& parent, T val){
+        if(parent->value > val){
+            removehelper(parent->left, val);
+        }
+        else if(parent->value < val){
+            removehelper(parent->right, val);
+        }
+        else if(parent->value = val){
+            if(parent->left == NULL && parent->right == NULL){
+                parent = NULL;
+                cout<<"Removed!";
+            }
+            else{
+                cout<<"The value is not a leaf!!"<<endl;
+            }
+        }
+    }
+    
+    void removenode(T val){
+        if(search(val)){
+            removehelper(head, val);
+        }
+        else{
+            cout<<"There is no such value.";
+        }
     }
 };
 
@@ -96,8 +124,11 @@ int main()
      n.insert(7);
      n.insert(4);
      n.inorder_traverse();
-     if(n.search(5)){
+     if(n.search(8)){
          cout<<"trye";}
-         else{
-             cout<<"asda";};
+     else{
+        cout<<"asda";
+     };
+     n.removenode(7);
+     n.inorder_traverse();
 }
