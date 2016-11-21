@@ -21,6 +21,15 @@ class Tree{
         head = NULL;
     }
     
+    ~Tree(){
+        head = NULL;
+    }
+    
+    
+    
+    
+    
+    
     void inserthelper(Node<T>*& parent, Node<T>* newnode){
         if(parent==NULL){
             parent = newnode;
@@ -42,6 +51,31 @@ class Tree{
         inserthelper(head, newnode);
     }
     
+    
+    
+    
+    
+     void postorder_traversehelper(Node<T>* parent){
+        if(parent!=NULL){
+            postorder_traversehelper(parent->left);
+            postorder_traversehelper(parent->right);
+            cout<<parent->value<<endl;
+        }else{
+            return;
+        }
+    }
+    
+     void preorder_traversehelper(Node<T>* parent){
+        if(parent!=NULL){
+            
+            cout<<parent->value<<endl;
+            preorder_traversehelper(parent->left);
+            preorder_traversehelper(parent->right);
+        }else{
+            return;
+        }
+    }
+    
     void inorder_traversehelper(Node<T>* parent){
         if(parent!=NULL){
             inorder_traversehelper(parent->left);
@@ -52,10 +86,28 @@ class Tree{
         }
     }
     
-    void inorder_traverse(){
-        cout<<"In inorder_traverse"<<endl;
-        inorder_traversehelper(head);
+    void inorder_traverse(int ch){
+        if(ch == 1){
+            cout<<"In inorder_traverse"<<endl;
+            inorder_traversehelper(head);
+        }
+        else if(ch == 2){
+            cout<<"Postorder traverse"<<endl;
+            postorder_traversehelper(head);
+        }
+        else if(ch == 3){
+            cout<<"Preorder traverse"<<endl;
+            preorder_traversehelper(head);
+        }
+        else{
+            cout<<"PROBLEM";
+        }
     }
+    
+    
+    
+    
+    
     
     bool searchhelper(Node<T>* parent, T val){
         if(parent!=NULL){
@@ -77,13 +129,15 @@ class Tree{
         }
     }
     
-    
     bool search(T val){
         if(searchhelper(head, val)){
             return true;
         }
         return false;
     }
+    
+    
+    
     
     
     bool removehelper(Node<T>*& parent, T val){
@@ -118,17 +172,17 @@ class Tree{
 int main()
 {
      Tree<int> n;
-     n.insert(8);
-     n.insert(10);
-     n.insert(6);
-     n.insert(7);
-     n.insert(4);
-     n.inorder_traverse();
-     if(n.search(8)){
-         cout<<"trye";}
-     else{
-        cout<<"asda";
-     };
-     n.removenode(7);
-     n.inorder_traverse();
+     cout<<"You have a new tree with type of int without any elements"<<enld;
+     cout<<"Choose: 1-insert new element,  2-remove,  3-find, 4-traverse,  5-calculating height,  6-end"<<endl;
+     int c;
+     cin<<c;
+     switch(c){
+        case 1: {
+            int ins;
+            cout<<"What integer you want to insert?"<<endl;
+            cin>>ins;
+            
+        }
+     }
+     
 }
