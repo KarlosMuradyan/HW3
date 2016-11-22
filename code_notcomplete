@@ -86,7 +86,7 @@ class Tree{
         }
     }
     
-    void inorder_traverse(int ch){
+    void traverse(int ch){
         if(ch == 1){
             cout<<"In inorder_traverse"<<endl;
             inorder_traversehelper(head);
@@ -150,7 +150,7 @@ class Tree{
         else if(parent->value = val){
             if(parent->left == NULL && parent->right == NULL){
                 parent = NULL;
-                cout<<"Removed!";
+                cout<<"Removed!"<<endl;
             }
             else{
                 cout<<"The value is not a leaf!!"<<endl;
@@ -163,7 +163,7 @@ class Tree{
             removehelper(head, val);
         }
         else{
-            cout<<"There is no such value.";
+            cout<<"There is no such value."<<endl;
         }
     }
 };
@@ -172,17 +172,52 @@ class Tree{
 int main()
 {
      Tree<int> n;
-     cout<<"You have a new tree with type of int without any elements"<<enld;
-     cout<<"Choose: 1-insert new element,  2-remove,  3-find, 4-traverse,  5-calculating height,  6-end"<<endl;
-     int c;
-     cin<<c;
-     switch(c){
-        case 1: {
-            int ins;
-            cout<<"What integer you want to insert?"<<endl;
-            cin>>ins;
-            
-        }
+     cout<<"You have a new tree with type of int without any elements"<<endl;
+     int c=0;
+     while(c!=6){
+         cout<<"Choose: 1-insert new element,  2-remove,  3-find, 4-traverse,  5-calculating height,  6-end"<<endl;
+         cin>>c;
+         switch(c){
+            case 1: {
+                int ins;
+                cout<<"What integer you want to insert?"<<endl;
+                cin>>ins;
+                n.insert(ins);
+                break;
+            }
+            case 2: {
+                int rem;
+                cout<<"Enter the number that you want to remove."<<endl;
+                cin>>rem;
+                n.removenode(rem);
+                break;
+            }
+            case 3: {
+                int ss;
+                cout<<"Enter the number that you want to search."<<endl;
+                cin>>ss;
+                if(n.search(ss)){
+                    cout<<"Found";
+                }else{
+                    cout<<"No such value";
+                }
+                break;
+            }
+            case 4:{
+                int cc;
+                cout<<"How you want to traverse in the data?  1-inorder  2-postorder  3-preorder"<<endl;
+                cin>>cc;
+                n.traverse(cc);
+                break;
+            }
+            case 5:{
+                
+            }
+            case 6:{
+                break;
+            }
+         }
      }
+     cout<<endl<<"Thank you for using our app!!";
      
 }
