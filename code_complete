@@ -1,4 +1,3 @@
-// Example program
 #include <iostream>
 #include <string>
 using namespace std;
@@ -156,15 +155,48 @@ class Tree{
                 cout<<"The value is not a leaf!!"<<endl;
             }
         }
+        else{
+            return 0;
+        }
     }
     
     void removenode(T val){
+        cout<<"inside remove"<<endl;
         if(search(val)){
+            cout<<"search of the value is true"<<endl;
             removehelper(head, val);
         }
         else{
+            cout<<"search of the value is false"<<endl;
             cout<<"There is no such value."<<endl;
         }
+    }
+    
+    
+    
+    
+    int count(Node<T>* parent){
+        if(parent == NULL){
+            return 0;
+        }
+        else{
+            int left=1;
+            int right=1;
+            
+            left = left + count(parent->left);
+            right = right + count(parent->right);
+            
+            if(left>right){
+                return left;
+            }
+            else{
+                return right;
+            }
+        }
+    }
+    
+    int get_height(){
+        return count(head);
     }
 };
 
@@ -211,7 +243,7 @@ int main()
                 break;
             }
             case 5:{
-                
+                cout<<"Height of your tree is: "<<n.get_height()<<endl;
             }
             case 6:{
                 break;
